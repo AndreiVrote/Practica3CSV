@@ -188,7 +188,7 @@ public class employeesView extends javax.swing.JFrame {
     }//GEN-LAST:event_BusquedaIdActionPerformed
 
     private void AñadirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirDatosActionPerformed
-        //AñadirDatos();
+        AñadirDatos();
     }//GEN-LAST:event_AñadirDatosActionPerformed
 
     private void OrdenAmostrar(){
@@ -250,12 +250,24 @@ public class employeesView extends javax.swing.JFrame {
     }
     
     private void AñadirDatos(){
-        JFileChooser archivoElegir = new JFileChooser();
-        int busqueda = archivoElegir.showOpenDialog(this);
+        if(empleados == null){
+            empleados = new ArrayList<>();
+            
+        }
         
-        if(busqueda == JFileChooser.APPROVE_OPTION){
-            File ubicacion = archivoElegir.getSelectedFile();
-            if(!)
+        JFileChooser archivoElegir = new JFileChooser();
+        int resultado = archivoElegir.showOpenDialog(this);
+        
+        if (resultado == JFileChooser.APPROVE_OPTION){
+            String ubicacion = archivoElegir.getSelectedFile().getAbsolutePath();
+            ArrayList<employees> nuevos = csvReader.leerEmpleados(ubicacion);
+            
+            if(nuevos == null || nuevos.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No hay datos en el archivo seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            empleados.addAll(nuevos);
+            OrdenAmostrar();
         }
     }
     
