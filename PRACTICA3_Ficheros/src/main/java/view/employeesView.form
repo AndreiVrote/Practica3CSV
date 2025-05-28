@@ -207,12 +207,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BusquedaIdActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="A&#xf1;arirDatos">
+            <Component class="javax.swing.JButton" name="A&#xf1;adirDatos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir + datos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A&#xf1;arirDatosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A&#xf1;adirDatosActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

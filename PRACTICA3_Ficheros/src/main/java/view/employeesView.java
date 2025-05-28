@@ -60,7 +60,7 @@ public class employeesView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         CargarDatos = new javax.swing.JButton();
         BusquedaId = new javax.swing.JButton();
-        AñarirDatos = new javax.swing.JButton();
+        AñadirDatos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 370));
@@ -139,13 +139,13 @@ public class employeesView extends javax.swing.JFrame {
         });
         jPanel2.add(BusquedaId);
 
-        AñarirDatos.setText("Añadir + datos");
-        AñarirDatos.addActionListener(new java.awt.event.ActionListener() {
+        AñadirDatos.setText("Añadir + datos");
+        AñadirDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AñarirDatosActionPerformed(evt);
+                AñadirDatosActionPerformed(evt);
             }
         });
-        jPanel2.add(AñarirDatos);
+        jPanel2.add(AñadirDatos);
 
         jPanel3.add(jPanel2, java.awt.BorderLayout.EAST);
 
@@ -187,9 +187,9 @@ public class employeesView extends javax.swing.JFrame {
         Busqueda();
     }//GEN-LAST:event_BusquedaIdActionPerformed
 
-    private void AñarirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñarirDatosActionPerformed
+    private void AñadirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirDatosActionPerformed
         //AñadirDatos();
-    }//GEN-LAST:event_AñarirDatosActionPerformed
+    }//GEN-LAST:event_AñadirDatosActionPerformed
 
     private void OrdenAmostrar(){
         if (AdvertenciaDatos()){
@@ -248,7 +248,7 @@ public class employeesView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    /*
+    
     private void AñadirDatos(){
         JFileChooser archivoElegir = new JFileChooser();
         int busqueda = archivoElegir.showOpenDialog(this);
@@ -258,7 +258,7 @@ public class employeesView extends javax.swing.JFrame {
             if(!)
         }
     }
-    */
+    
     private boolean AdvertenciaDatos(){
         if (empleados == null || empleados.isEmpty()){
              JOptionPane.showMessageDialog(this, "Primero añade carga los datos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -269,7 +269,7 @@ public class employeesView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Apellido_Ordenar;
-    private javax.swing.JButton AñarirDatos;
+    private javax.swing.JButton AñadirDatos;
     private javax.swing.JButton BusquedaId;
     private javax.swing.JButton CargarDatos;
     private javax.swing.JRadioButton Departamento_Ordenar;
