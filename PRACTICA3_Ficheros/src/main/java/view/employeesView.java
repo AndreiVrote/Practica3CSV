@@ -7,12 +7,12 @@ package view;
 
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 //import javax.swing.plaf.fileChooser;
 import model.employees;
 import model.csvReader;
-import java.util.List;
 import model.orderEmployees;
 
 /**
@@ -159,13 +159,20 @@ public class employeesView extends javax.swing.JFrame {
     }//GEN-LAST:event_ID_OrdenarActionPerformed
 
     private void CargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarDatosActionPerformed
-        JFileChooser fileChooser = new JFileChooser(); //al igual que un JOptionPane, guarda la ruta del archivo deseado en una variable para
-        //facilitar su posterior acceso.
+        JFileChooser fileChooser = new JFileChooser();
         int fileResultado = fileChooser.showOpenDialog(this);
         if (fileResultado == JFileChooser.APPROVE_OPTION) {
-            String ruta = fileChooser.getSelectedFile().getAbsolutePath();
-            listaEmpleados =  csvReader.leerEmpleados(ruta);
-        }
+            String ubicacion = fileChooser.getSelectedFile().getAbsolutePath();
+            listaEmpleados = csvReader.leerEmpleados(ubicacion);
+
+            // Creamos el modelo y lo cargamos con los empleados
+            DefaultListModel<String> modeloLista = new DefaultListModel<>();
+            for (employees emp : listaEmpleados) {
+                modeloLista.addElement(emp.toString()); // convierte Empleado a String
+            }
+
+        listaEmpleados.setModel(modeloLista); // Asignamos el modelo a la JList
+    }
     }//GEN-LAST:event_CargarDatosActionPerformed
 
     private void Apellido_OrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apellido_OrdenarActionPerformed
