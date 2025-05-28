@@ -5,11 +5,12 @@
 package view;
 
 
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 //import javax.swing.plaf.fileChooser;
-import model.employees
+import model.employees;
 import model.csvReader;
 import java.util.List;
 import model.orderEmployees;
@@ -20,7 +21,7 @@ import model.orderEmployees;
  */
 public class employeesView extends javax.swing.JFrame {
     private ButtonGroup buttonGroup;
-    private List<employees> empleados;
+    private ArrayList<employees> empleados;
     /**
      * Creates new form employeesView
      */
