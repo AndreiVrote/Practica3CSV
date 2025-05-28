@@ -163,11 +163,11 @@ public class employeesView extends javax.swing.JFrame {
         int fileResultado = fileChooser.showOpenDialog(this);
         if (fileResultado == JFileChooser.APPROVE_OPTION) {
             String ubicacion = fileChooser.getSelectedFile().getAbsolutePath();
-            listaEmpleados = csvReader.leerEmpleados(ubicacion);
+            empleados = csvReader.leerEmpleados(ubicacion);
 
             // Creamos el modelo y lo cargamos con los empleados
             DefaultListModel<String> modeloLista = new DefaultListModel<>();
-            for (employees emp : listaEmpleados) {
+            for (employees emp : empleados) {
                 modeloLista.addElement(emp.toString()); // convierte Empleado a String
             }
 
