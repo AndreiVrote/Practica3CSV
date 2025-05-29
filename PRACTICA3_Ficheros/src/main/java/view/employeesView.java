@@ -244,6 +244,7 @@ public class employeesView extends javax.swing.JFrame {
         
         if (encontrado != null){
             listaEmpleados.setListData(new String[] {encontrado.toString()});
+            //empleados.addAll(empleados);
         }else{
             JOptionPane.showMessageDialog(this, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
