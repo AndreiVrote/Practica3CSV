@@ -236,38 +236,25 @@ public class employeesView extends javax.swing.JFrame {
         }
         
         ArrayList<employees> encontrados = new ArrayList<employees>();
-    for (int i = 0; i < empleados.size(); i++) {
-        if (empleados.get(i).getEmployee_id() == idBuscar) {
-            encontrados.add(empleados.get(i));
-        }
-    }
-
-    if (!encontrados.isEmpty()) {
-        DefaultListModel<String> modeloLista = new DefaultListModel<String>();
-        ArrayList<String> listaTexto = new ArrayList<String>();
-        for (int i = 0; i < encontrados.size(); i++) {
-            listaTexto.add(encontrados.get(i).toString());
-        }
-        modeloLista.addAll(listaTexto); 
-        listaEmpleados.setModel(modeloLista);
-    } else {
-        JOptionPane.showMessageDialog(this, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-        /*
-        employees encontrado = null;
-        for ( int i = 0; i < empleados.size(); i++){
-            if(empleados.get(i).getEmployee_id() == idBuscar){
-                encontrado = empleados.get(i);
+        for (int i = 0; i < empleados.size(); i++) {
+            if (empleados.get(i).getEmployee_id() == idBuscar) {
+                encontrados.add(empleados.get(i));
             }
-        }  
-        
-        if (encontrado != null){
-            listaEmpleados.setListData(new String[] {encontrado.toString()});
-            //empleados.addAll(empleados);
-        }else{
-            JOptionPane.showMessageDialog(this, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
-*/
+    
+        if (!encontrados.isEmpty()){
+            DefaultListModel<String> modeloLista = new DefaultListModel<>();
+            ArrayList<String> listaTexto = new ArrayList<>();
+            for(int i =0; i <encontrados.size(); i++){
+                listaTexto.add(encontrados.get(i).toString());
+
+            }
+            modeloLista.addAll(listaTexto);
+            listaEmpleados.setModel(modeloLista);
+        } else{
+            JOptionPane.showMessageDialog(this, "Error. Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }
     
     private void AñadirDatos(){
