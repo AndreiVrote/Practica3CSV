@@ -19,8 +19,10 @@ import model.orderEmployees;
  * @author Andrei
  */
 public class employeesView extends javax.swing.JFrame {
-    private ButtonGroup buttonGroup; // Instanciacionagrupacion de botones
-    private ArrayList<employees> empleados; //lista que se completara segun el csv cargado
+
+    private ButtonGroup buttonGroup; // Instanciacion agrupacion de botones
+    private ArrayList<employees> empleados; //se instancia una lista como ArrayList que se completara segun el csv cargado
+
     /**
      * Creates new form employeesView
      */
@@ -37,7 +39,8 @@ public class employeesView extends javax.swing.JFrame {
         buttonGroup.add(this.ID_Ordenar);
         buttonGroup.add(this.Apellido_Ordenar);
         buttonGroup.add(this.Departamento_Ordenar);
-        this.ID_Ordenar.isSelected();// de forma predeterminada es elegida
+        this.ID_Ordenar.setSelected(true);// de forma predeterminada es elegida
+
         
     }
     /**
