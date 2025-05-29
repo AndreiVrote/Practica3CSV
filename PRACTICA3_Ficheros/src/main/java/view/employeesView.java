@@ -200,34 +200,30 @@ public class employeesView extends javax.swing.JFrame {
     private void AñadirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirDatosActionPerformed
         AñadirDatos();
     }//GEN-LAST:event_AñadirDatosActionPerformed
-
+    
+    /*
+    Metodo que ordena la lista segun que opcion sea seleccionado
+    */
     private void OrdenAmostrar(){
-        if (AdvertenciaDatos()){
+        if (AdvertenciaDatos()){//en caso de no haber cargado previamente los datos de uu csv, salta el error
             return;
         }
             
-        if(empleados == null || empleados.isEmpty()){
-            return;
-        }else{
-            //ordenamos segun el radio button seleccionado
-            if(ID_Ordenar.isSelected()){
-                orderEmployees.OrdenPorId(empleados);   
-            }else if(Apellido_Ordenar.isSelected()){
-                orderEmployees.OrdenPorApellido(empleados);
-            }else{
-                orderEmployees.OrdenPorDepartamento(empleados);
-            }
-
-            String [] texto  = new String[empleados.size()];
-            for (int i = 0; i < texto.length; i++){
-                texto[i] = empleados.get(i).toString();
-            }
-            DefaultListModel<String> modelo = new DefaultListModel<>();
-            for (employees emp : empleados){
-                modelo.addElement(emp.toString());
-            }
-            listaEmpleados.setModel(modelo);
+        //ordenamos segun el radio button seleccionado
+        if(ID_Ordenar.isSelected()){//si ID_Ordenar es seleccionado
+            orderEmployees.OrdenPorId(empleados);//llama al metodo OrdenPorId
+        }else if(Apellido_Ordenar.isSelected()){//si Apellido_Ordenar es seleccionado
+            orderEmployees.OrdenPorApellido(empleados);//llama al metodo OrdenPorApellido
+        }else{//si es otra opcion, la que queda es 
+            orderEmployees.OrdenPorDepartamento(empleados);
         }
+
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+        for (employees emp : empleados){
+            modelo.addElement(emp.toString());
+        }
+        listaEmpleados.setModel(modelo);
+        
     }
    
     private void Busqueda(){
