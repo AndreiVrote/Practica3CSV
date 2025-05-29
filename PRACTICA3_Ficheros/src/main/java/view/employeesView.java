@@ -193,7 +193,7 @@ public class employeesView extends javax.swing.JFrame {
     }//GEN-LAST:event_BusquedaIdActionPerformed
 
     private void AñadirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirDatosActionPerformed
-        AnadirDatos();//llamada metodo AñadirDatos, explicacione en el metodo
+        AnadirDatos();//llamada metodo AnadirDatos, explicacione en el metodo
     }//GEN-LAST:event_AñadirDatosActionPerformed
     
     /*
@@ -219,52 +219,58 @@ public class employeesView extends javax.swing.JFrame {
         listaEmpleados.setModel(crearModeloLista(empleados));
     }
    
+    /*
+    metodo que busca un empleado por su id
+    muestra una ventana para introducir el id a buscar
+    si se encuentra ese empleado, se actualiza la lista mostrando ese empleado
+    */
     private void Busqueda(){
-        if (AdvertenciaDatos()){
+        if (AdvertenciaDatos()){//en caso de no haber cargado previamente los datos de uu csv, salta el error
             return;
         }   
         
+        //pregunta por el id a buscar
         String buscar = JOptionPane.showInputDialog(this, "Introduce un ID a buscar: ", "Buscador de ID", JOptionPane.QUESTION_MESSAGE);
-        if (buscar == null || buscar.isEmpty()){
+        //JOptionPane devuelve String, por ello se recoge el id a buscar como String y luego se pasa a int
+        
+        if (buscar == null || buscar.isEmpty()){//validacion de si se cancela la accion o no se escribe nada
             JOptionPane.showMessageDialog(this, "Introduce un ID");
             return;
         }
         
         int idBuscar;
-        try{
-            idBuscar = Integer.parseInt(buscar.trim());
+        try{ 
+            idBuscar = Integer.parseInt(buscar.trim());//convertir texto a numero int
         }catch(Exception ex){
+            //si el id es invalido (no hay empleado con ese id) salta el siguiente mensaje
             JOptionPane.showMessageDialog(this, "ID no valido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        ArrayList<employees> encontrados = new ArrayList<employees>();
-        for (int i = 0; i < empleados.size(); i++) {
-            if (empleados.get(i).getEmployee_id() == idBuscar) {
-                encontrados.add(empleados.get(i));
+        employees encontrado = null;
+        for(employees empleado : empleados){
+            if(empleado.getEmployee_id() == idBuscar){
+                encontrado = empleado;
             }
         }
-    
-        if (!encontrados.isEmpty()){
+        
+        if (encontrado != null){
+            //crear el modelo lista solo con un empleado
             DefaultListModel<String> modeloLista = new DefaultListModel<>();
             ArrayList<String> listaTexto = new ArrayList<>();
-            for(int i =0; i <encontrados.size(); i++){
-                listaTexto.add(encontrados.get(i).toString());
-
-            }
-            modeloLista.addAll(listaTexto);
-            listaEmpleados.setModel(modeloLista);
-        } else{
+            listaEmpleados.setModel(modeloLista);//actualiza la lista para que solo salga el empleado buscado
+        }else{
+            //si no lo encuentra salta error    
             JOptionPane.showMessageDialog(this, "Error. Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    
+        
     }
     
     /*
-    Metodo para añadir datos de empleados de otro csv. 
-    Se actualiza la lista en el orden que esta seleccionado, por ejemplo si esta puesta la ordenacion por id, 
+    metodo para añadir datos de empleados de otro csv. 
+    se actualiza la lista en el orden que esta seleccionado, por ejemplo si esta puesta la ordenacion por id, 
     se pone en su lugar correspondiente.
-    Se actualiza la lista con los nuevos datos.
+    se actualiza la lista con los nuevos datos.
     */
     private void AnadirDatos(){
         if (AdvertenciaDatos()){//en caso de no haber cargado previamente los datos de otro csv, salta el error
@@ -294,11 +300,11 @@ public class employeesView extends javax.swing.JFrame {
     //metodo que crea los modelos de lista, que necesitamos para la ordenacion de datos en el metodo ordenAmostrar
     // y en el boton CargarDatos
     private DefaultListModel<String> crearModeloLista (ArrayList<employees> listaEmpleados){
-        DefaultListModel<String> modeloLista = new  DefaultListModel<>();
-        for (employees emp : empleados){
-            modeloLista.addElement(emp.toString());
+        DefaultListModel<String> modeloLista = new  DefaultListModel<>();//creacion del modelo de lista
+        for (employees emp : empleados){//recorremos la lista de empleados
+            modeloLista.addElement(emp.toString());//convierte cada empleado a String y se aña de al modelo
         }
-        return modeloLista;
+        return modeloLista;//devuelve el modelo completo
     }
     
     //metodo que verifica si la lista esta vacia si es asi, salta la advertencia
