@@ -44,10 +44,12 @@ public class orderEmployees {
         });
     }
     
-    //metodo para ordenar por departamento
-    //uso de compareToIgnoreCase para evitar problemas de mayusculas y minusculas (las ignora)
-    //aunque sean datos numericos debido a un null en departamento, se usa String para que salgan todos,
-    //si fuese int, llegaria hasta el null, 178 y no imprime el resto (total de 206)
+    /*
+    metodo para ordenar por departamento
+    uso de compareToIgnoreCase para evitar problemas de mayusculas y minusculas (las ignora)
+    aunque sean datos numericos debido a un null en departamento, se usa String para que salgan todos,
+    si fuese int, llegaria hasta el null, 178 y no imprime el resto (total de 206)
+    */
     
     public static void OrdenPorDepartamento(ArrayList<employees> lista){
         Collections.sort(lista, new Comparator<employees>(){
