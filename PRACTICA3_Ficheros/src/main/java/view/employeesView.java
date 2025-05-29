@@ -238,33 +238,40 @@ public class employeesView extends javax.swing.JFrame {
             return;
         }
         
-        int idBuscar;
-        try{ 
-            idBuscar = Integer.parseInt(buscar.trim());//convertir texto a numero int
-        }catch(Exception ex){
-            //si el id es invalido (no hay empleado con ese id) salta el siguiente mensaje
-            JOptionPane.showMessageDialog(this, "ID no valido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        employees encontrado = null;
-        for(employees empleado : empleados){
-            if(empleado.getEmployee_id() == idBuscar){
-                encontrado = empleado;
-            }
-        }
-        
-        if (encontrado != null){
-            //crear el modelo lista solo con un empleado
-            DefaultListModel<String> modeloLista = new DefaultListModel<>();
-            ArrayList<String> listaTexto = new ArrayList<>();
-            listaEmpleados.setModel(modeloLista);//actualiza la lista para que solo salga el empleado buscado
-        }else{
-            //si no lo encuentra salta error    
-            JOptionPane.showMessageDialog(this, "Error. Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
+           int idBuscar;
+    try {
+        // convertir el texto introducido a un numero int
+        idBuscar = Integer.parseInt(buscar.trim());
+    } catch (Exception ex) {
+        // si no existe ese id salta el siguiente error
+        JOptionPane.showMessageDialog(this, "ID no válido", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+    
+    // lista para almacenar los empleados encontrados con el ID buscado
+    ArrayList<employees> encontrados = new ArrayList<>();
+    for (employees emp : empleados) {
+        if (emp.getEmployee_id() == idBuscar) {
+            encontrados.add(emp);
+        }
+    }
+
+    // NOTA: id unicos pero recorre todo y en caso de haber vario id iguales saldrian 
+    if (!encontrados.isEmpty()) {
+        // crear el modelo de lista
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        for (employees encontrado : encontrados) {
+            modeloLista.addElement(encontrado.toString());//llenar la lista con los empleados encontrados
+        }
+        // mostrar los resultados en la JList
+        listaEmpleados.setModel(modeloLista);
+    } else {
+        // si no se encuentra ningún empleado, salta el siguiente mensaje de error
+        JOptionPane.showMessageDialog(this, "Error. Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+        
+}
     
     /*
     metodo para añadir datos de empleados de otro csv. 
