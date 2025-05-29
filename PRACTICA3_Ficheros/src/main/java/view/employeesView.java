@@ -159,32 +159,38 @@ public class employeesView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ID_OrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_OrdenarActionPerformed
-        OrdenAmostrar();
+        OrdenAmostrar();//llamada metodo OrdenAmostrar
+        //se ordena por id (explicacion en el metodo)
     }//GEN-LAST:event_ID_OrdenarActionPerformed
 
     private void CargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarDatosActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        int fileResultado = fileChooser.showOpenDialog(this);
-        if (fileResultado == JFileChooser.APPROVE_OPTION) {
-            String ubicacion = fileChooser.getSelectedFile().getAbsolutePath();
-            empleados = csvReader.leerEmpleados(ubicacion);
+        JFileChooser fileChooser = new JFileChooser();//crea selecto de archivos 
+        
+        int fileResultado = fileChooser.showOpenDialog(this);//muestra la ventana, y posteriormente si se acepta, se guarda la selecion 
+        // fileResultado como entero ya que JFileChooser devuelve un valor que representa su accion
+        
+        if (fileResultado == JFileChooser.APPROVE_OPTION) { //si se aprueba la eleccion
+            String ubicacion = fileChooser.getSelectedFile().getAbsolutePath(); //obtiene la ubicacion del archivo
+            empleados = csvReader.leerEmpleados(ubicacion);// llamada al metodo, lectura del archivo y escritura de la lista
 
-            // Creamos el modelo y lo cargamos con los empleados
+            // Creamos el modelo para la JList (listaEmpleados) que contiene los empleados en formato String y lo cargamos con los empleados
             DefaultListModel<String> modeloLista = new DefaultListModel<>();
-            for (employees emp : empleados) {
-                modeloLista.addElement(emp.toString()); // convierte Empleado a String
+            for (employees empleado : empleados) {
+                modeloLista.addElement(empleado.toString()); // convierte empeado a String
             }
 
-        listaEmpleados.setModel(modeloLista); // Asignamos el modelo a la JList
-    }
+        listaEmpleados.setModel(modeloLista); //asignacion del modelo a la JList(listaEmpleados) para visualizar la lista
+        }
     }//GEN-LAST:event_CargarDatosActionPerformed
 
     private void Apellido_OrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apellido_OrdenarActionPerformed
-        OrdenAmostrar();
+        OrdenAmostrar();//llamada metodo OrdenAmostrar
+        //se ordena por id (explicacion en el metodo)
     }//GEN-LAST:event_Apellido_OrdenarActionPerformed
 
     private void Departamento_OrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Departamento_OrdenarActionPerformed
-        OrdenAmostrar();
+        OrdenAmostrar();//llamada metodo OrdenAmostrar
+        //se ordena por id (explicacion en el metodo)
     }//GEN-LAST:event_Departamento_OrdenarActionPerformed
 
     private void BusquedaIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaIdActionPerformed
@@ -265,35 +271,44 @@ public class employeesView extends javax.swing.JFrame {
     
     }
     
+    /*
+    Metodo para añadir datos de empleados de otro csv. 
+    Se actualiza la lista en el orden que esta seleccionado, por ejemplo si esta puesta la ordenacion por id, 
+    se pone en su lugar correspondiente.
+    Se actualiza la lista con los nuevos datos.
+    */
     private void AñadirDatos(){
-        if(empleados == null){
-            empleados = new ArrayList<>();
-            
+        if (AdvertenciaDatos()){//en caso de no haber cargado previamente los datos de otro csv, salta el error
+            return;
         }
         
+        //creacion de un selector de archivos como en el JButon CargarDatos, para elegir archivo csv
         JFileChooser archivoElegir = new JFileChooser();
-        int resultado = archivoElegir.showOpenDialog(this);
         
-        if (resultado == JFileChooser.APPROVE_OPTION){
-            String ubicacion = archivoElegir.getSelectedFile().getAbsolutePath();
-            ArrayList<employees> nuevos = csvReader.leerEmpleados(ubicacion);
+        int resultado = archivoElegir.showOpenDialog(this); //ventana para abrir archivo
+        //resultado como entero ya que JFileChooser devuelve un valor que representa su accion
+        
+        if (resultado == JFileChooser.APPROVE_OPTION){ //si se acepta (Abrir)
+            String ubicacion = archivoElegir.getSelectedFile().getAbsolutePath(); //se obtiene la ubicacion del archivo
+            ArrayList<employees> nuevos = csvReader.leerEmpleados(ubicacion);//lee los nuevos datos
             
-            if(nuevos == null || nuevos.isEmpty()){
+            if(nuevos == null || nuevos.isEmpty()){//en caso de no haber datos, muetra el siguiente error
                 JOptionPane.showMessageDialog(this, "No hay datos en el archivo seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            empleados.addAll(nuevos);
-            OrdenAmostrar();
+            empleados.addAll(nuevos);//añade los nuevos datos a la lista empleados
+            OrdenAmostrar();//acualiza y ordena la lista de nuevo
         }
 
     }
     
+    //metodo que verifica si la lista esta vacia si es asi, salta la advertencia
     private boolean AdvertenciaDatos(){
-        if (empleados == null || empleados.isEmpty()){//si la lista esta vacia o null salta el siguiente mensaje de error
+        if (empleados == null || empleados.isEmpty()){
              JOptionPane.showMessageDialog(this, "Primero añade carga los datos", "Error", JOptionPane.ERROR_MESSAGE);
-             return true;
+             return true;//devuelve true, la lista esta vacia o null
          }
-        return false;
+        return false;//devuelve false, la lista no esta vacia o null
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
