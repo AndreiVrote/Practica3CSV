@@ -19,23 +19,25 @@ import model.orderEmployees;
  * @author Andrei
  */
 public class employeesView extends javax.swing.JFrame {
-    private ButtonGroup buttonGroup;
-    private ArrayList<employees> empleados;
+    private ButtonGroup buttonGroup; // Instanciacionagrupacion de botones
+    private ArrayList<employees> empleados; //lista que se completara segun el csv cargado
     /**
      * Creates new form employeesView
      */
-    public employeesView() {
+    public employeesView() {// inicializa componentes graficos
         initComponents();
-        setFrame();
+        setFrame();//llamada al metodo setFrame con sus ajustes predeterminados
     }
-    public void setFrame(){
-        this.setTitle("Empleados - HR");
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        buttonGroup = new ButtonGroup();
+    private void setFrame(){
+        this.setTitle("Empleados - HR"); //titulo ventana
+        this.setLocationRelativeTo(null);// ubicadcion ventana
+        this.setResizable(false);// desactivacion del cambio de tamaño, se descuadra
+        buttonGroup = new ButtonGroup(); //creacion de button group para que al seleccionar uno, otro se desactive
+        //añadimos los radioButton al buttonGroup
         buttonGroup.add(this.ID_Ordenar);
         buttonGroup.add(this.Apellido_Ordenar);
         buttonGroup.add(this.Departamento_Ordenar);
+        this.ID_Ordenar.isSelected();// de forma predeterminada es elegida
         
     }
     /**
