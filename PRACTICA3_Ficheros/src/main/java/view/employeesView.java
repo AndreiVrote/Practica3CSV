@@ -173,13 +173,8 @@ public class employeesView extends javax.swing.JFrame {
             String ubicacion = fileChooser.getSelectedFile().getAbsolutePath(); //obtiene la ubicacion del archivo
             empleados = csvReader.leerEmpleados(ubicacion);// llamada al metodo, lectura del archivo y escritura de la lista
 
-            // Creamos el modelo para la JList (listaEmpleados) que contiene los empleados en formato String y lo cargamos con los empleados
-            DefaultListModel<String> modeloLista = new DefaultListModel<>();
-            for (employees empleado : empleados) {
-                modeloLista.addElement(empleado.toString()); // convierte empeado a String
-            }
-
-        listaEmpleados.setModel(modeloLista); //asignacion del modelo a la JList(listaEmpleados) para visualizar la lista
+            // crear y asigar el modelo para la JList (listaEmpleados) y se carga con los empleadoss
+            listaEmpleados.setModel(crearModeloLista(empleados)); 
         }
     }//GEN-LAST:event_CargarDatosActionPerformed
 
@@ -194,11 +189,11 @@ public class employeesView extends javax.swing.JFrame {
     }//GEN-LAST:event_Departamento_OrdenarActionPerformed
 
     private void BusquedaIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaIdActionPerformed
-        Busqueda();
+        Busqueda();//llamada metodo Busqueda, explicacione en el metodo
     }//GEN-LAST:event_BusquedaIdActionPerformed
 
     private void AñadirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirDatosActionPerformed
-        AñadirDatos();
+        AnadirDatos();//llamada metodo AñadirDatos, explicacione en el metodo
     }//GEN-LAST:event_AñadirDatosActionPerformed
     
     /*
@@ -212,18 +207,16 @@ public class employeesView extends javax.swing.JFrame {
         //ordenamos segun el radio button seleccionado
         if(ID_Ordenar.isSelected()){//si ID_Ordenar es seleccionado
             orderEmployees.OrdenPorId(empleados);//llama al metodo OrdenPorId
+            
         }else if(Apellido_Ordenar.isSelected()){//si Apellido_Ordenar es seleccionado
             orderEmployees.OrdenPorApellido(empleados);//llama al metodo OrdenPorApellido
-        }else{//si es otra opcion, la que queda es 
-            orderEmployees.OrdenPorDepartamento(empleados);
+            
+        }else{//si es otra opcion, la que queda es Departamento_Ordenar
+            orderEmployees.OrdenPorDepartamento(empleados);//llama al metodo OrdenPorDepartamento
         }
 
-        DefaultListModel<String> modelo = new DefaultListModel<>();
-        for (employees emp : empleados){
-            modelo.addElement(emp.toString());
-        }
-        listaEmpleados.setModel(modelo);
-        
+        // crear y asigar el modelo para la JList (listaEmpleados) y se carga con los empleados
+        listaEmpleados.setModel(crearModeloLista(empleados));
     }
    
     private void Busqueda(){
@@ -273,7 +266,7 @@ public class employeesView extends javax.swing.JFrame {
     se pone en su lugar correspondiente.
     Se actualiza la lista con los nuevos datos.
     */
-    private void AñadirDatos(){
+    private void AnadirDatos(){
         if (AdvertenciaDatos()){//en caso de no haber cargado previamente los datos de otro csv, salta el error
             return;
         }
@@ -296,6 +289,16 @@ public class employeesView extends javax.swing.JFrame {
             OrdenAmostrar();//acualiza y ordena la lista de nuevo
         }
 
+    }
+    
+    //metodo que crea los modelos de lista, que necesitamos para la ordenacion de datos en el metodo ordenAmostrar
+    // y en el boton CargarDatos
+    private DefaultListModel<String> crearModeloLista (ArrayList<employees> listaEmpleados){
+        DefaultListModel<String> modeloLista = new  DefaultListModel<>();
+        for (employees emp : empleados){
+            modeloLista.addElement(emp.toString());
+        }
+        return modeloLista;
     }
     
     //metodo que verifica si la lista esta vacia si es asi, salta la advertencia
