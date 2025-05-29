@@ -212,7 +212,11 @@ public class employeesView extends javax.swing.JFrame {
             for (int i = 0; i < texto.length; i++){
                 texto[i] = empleados.get(i).toString();
             }
-            listaEmpleados.setListData(texto); 
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (employees emp : empleados){
+                modelo.addElement(emp.toString());
+            }
+            listaEmpleados.setModel(modelo);
         }
     }
    
