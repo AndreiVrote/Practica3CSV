@@ -248,7 +248,7 @@ public class employeesView extends javax.swing.JFrame {
         for (int i = 0; i < encontrados.size(); i++) {
             listaTexto.add(encontrados.get(i).toString());
         }
-        modeloLista.addAll(listaTexto); // Requiere Java 9+
+        modeloLista.addAll(listaTexto); 
         listaEmpleados.setModel(modeloLista);
     } else {
         JOptionPane.showMessageDialog(this, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -267,6 +267,7 @@ public class employeesView extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
+*/
     }
     
     private void AñadirDatos(){
@@ -289,7 +290,7 @@ public class employeesView extends javax.swing.JFrame {
             empleados.addAll(nuevos);
             OrdenAmostrar();
         }
-*/
+
     }
     
     private boolean AdvertenciaDatos(){
