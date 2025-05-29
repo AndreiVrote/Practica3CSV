@@ -285,7 +285,7 @@ public class employeesView extends javax.swing.JFrame {
     }
     
     private boolean AdvertenciaDatos(){
-        if (empleados == null || empleados.isEmpty()){
+        if (empleados == null || empleados.isEmpty()){//si la lista esta vacia o null salta el siguiente mensaje de error
              JOptionPane.showMessageDialog(this, "Primero añade carga los datos", "Error", JOptionPane.ERROR_MESSAGE);
              return true;
          }
