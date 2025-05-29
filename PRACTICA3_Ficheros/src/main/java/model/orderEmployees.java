@@ -10,16 +10,16 @@ import java.util.Comparator;
 
 /**
  *
- * @author Usuario
+ * @author Andrei
  */
 public class orderEmployees {
     /*
     clase para las diferentes ordenaciones
     Collections para uso de sort para ordenacion junto con
     el uso de 'compare' para comparar su valor segun el caso
-    en caso de algun valor null, como pasa con el empleado 178, en la ordenacion por department_id
-    aparece el primero
+    en la ordenacion por departamento no se realiza de forma correcta, explicacion en el metodo
     */
+    
     //metodo para ordenar por Id del empleado, de forma ascendente
     
     public static void OrdenPorId (ArrayList<employees> lista){
@@ -32,8 +32,11 @@ public class orderEmployees {
         });
     }
     
-    //metodo para ordenar por apellido por orden alfabetico.
-    //uso de compareToIgnoreCase para evitar problemas de mayusculas y minusculas (las ignora)
+    /*
+    metodo para ordenar por apellido por orden alfabetico.
+    uso de compareToIgnoreCase para evitar problemas de mayusculas y minusculas (las ignora)
+    de la 'A' a la 'Z'
+    */
     
     public static void OrdenPorApellido(ArrayList<employees> lista){
         Collections.sort(lista, new  Comparator<employees>(){
@@ -49,6 +52,7 @@ public class orderEmployees {
     uso de compareToIgnoreCase para evitar problemas de mayusculas y minusculas (las ignora)
     aunque sean datos numericos debido a un null en departamento, se usa String para que salgan todos,
     si fuese int, llegaria hasta el null, 178 y no imprime el resto (total de 206)
+    debido a eso su ordenacion es incorrecta
     */
     
     public static void OrdenPorDepartamento(ArrayList<employees> lista){
