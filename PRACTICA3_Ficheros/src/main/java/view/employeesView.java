@@ -235,6 +235,25 @@ public class employeesView extends javax.swing.JFrame {
             return;
         }
         
+        ArrayList<employees> encontrados = new ArrayList<employees>();
+    for (int i = 0; i < empleados.size(); i++) {
+        if (empleados.get(i).getEmployee_id() == idBuscar) {
+            encontrados.add(empleados.get(i));
+        }
+    }
+
+    if (!encontrados.isEmpty()) {
+        DefaultListModel<String> modeloLista = new DefaultListModel<String>();
+        ArrayList<String> listaTexto = new ArrayList<String>();
+        for (int i = 0; i < encontrados.size(); i++) {
+            listaTexto.add(encontrados.get(i).toString());
+        }
+        modeloLista.addAll(listaTexto); // Requiere Java 9+
+        listaEmpleados.setModel(modeloLista);
+    } else {
+        JOptionPane.showMessageDialog(this, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        /*
         employees encontrado = null;
         for ( int i = 0; i < empleados.size(); i++){
             if(empleados.get(i).getEmployee_id() == idBuscar){
@@ -270,6 +289,7 @@ public class employeesView extends javax.swing.JFrame {
             empleados.addAll(nuevos);
             OrdenAmostrar();
         }
+*/
     }
     
     private boolean AdvertenciaDatos(){
