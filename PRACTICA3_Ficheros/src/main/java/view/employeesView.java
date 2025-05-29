@@ -189,11 +189,11 @@ public class employeesView extends javax.swing.JFrame {
     }//GEN-LAST:event_Departamento_OrdenarActionPerformed
 
     private void BusquedaIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaIdActionPerformed
-        Busqueda();//llamada metodo Busqueda, explicacione en el metodo
+        Busqueda();//llamada metodo Busqueda, explicacion en el metodo
     }//GEN-LAST:event_BusquedaIdActionPerformed
 
     private void AñadirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirDatosActionPerformed
-        AnadirDatos();//llamada metodo AnadirDatos, explicacione en el metodo
+        AnadirDatos();//llamada metodo AnadirDatos, explicacion en el metodo
     }//GEN-LAST:event_AñadirDatosActionPerformed
     
     /*
@@ -238,40 +238,40 @@ public class employeesView extends javax.swing.JFrame {
             return;
         }
         
-           int idBuscar;
-    try {
-        // convertir el texto introducido a un numero int
-        idBuscar = Integer.parseInt(buscar.trim());
-    } catch (Exception ex) {
-        // si no existe ese id salta el siguiente error
-        JOptionPane.showMessageDialog(this, "ID no válido", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    // lista para almacenar los empleados encontrados con el ID buscado
-    ArrayList<employees> encontrados = new ArrayList<>();
-    for (employees emp : empleados) {
-        if (emp.getEmployee_id() == idBuscar) {
-            encontrados.add(emp);
+        int idBuscar;
+        try {
+            // convertir el texto introducido a un numero int
+            idBuscar = Integer.parseInt(buscar.trim());
+        } catch (Exception ex) {
+            // si no existe ese id salta el siguiente error
+            JOptionPane.showMessageDialog(this, "ID no válido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }
 
-    // NOTA: id unicos pero recorre todo y en caso de haber vario id iguales saldrian 
-    if (!encontrados.isEmpty()) {
-        // crear el modelo de lista
-        DefaultListModel<String> modeloLista = new DefaultListModel<>();
-        for (employees encontrado : encontrados) {
-            modeloLista.addElement(encontrado.toString());//llenar la lista con los empleados encontrados
+        // lista para almacenar los empleados encontrados con el ID buscado
+        ArrayList<employees> encontrados = new ArrayList<>();
+        for (employees emp : empleados) {
+            if (emp.getEmployee_id() == idBuscar) {
+                encontrados.add(emp);
+            }
         }
-        // mostrar los resultados en la JList
-        listaEmpleados.setModel(modeloLista);
-    } else {
-        // si no se encuentra ningún empleado, salta el siguiente mensaje de error
-        JOptionPane.showMessageDialog(this, "Error. Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-    }
 
-        
-}
+        // NOTA: id unicos pero recorre todo y en caso de haber vario id iguales saldrian 
+        if (!encontrados.isEmpty()) {
+            // crear el modelo de lista
+            DefaultListModel<String> modeloLista = new DefaultListModel<>();
+            for (employees encontrado : encontrados) {
+                modeloLista.addElement(encontrado.toString());//llenar la lista con los empleados encontrados
+            }
+            // mostrar los resultados en la JList
+            listaEmpleados.setModel(modeloLista);
+        } else {
+            // si no se encuentra ningún empleado, salta el siguiente mensaje de error
+            JOptionPane.showMessageDialog(this, "Error. Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }
     
     /*
     metodo para añadir datos de empleados de otro csv. 
